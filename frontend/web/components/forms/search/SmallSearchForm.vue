@@ -12,7 +12,6 @@
             <city-select
               ref="citySelect"
               v-model="city"
-              :dense="short"
               @input="onCityChange"
             ></city-select>
           </template>
@@ -20,6 +19,10 @@
           <span> Выберите пункт назначения </span>
         </v-tooltip>
       </v-col>
+
+      <span class="separator__wrapper" style="width: 1px; height: 52px; background-color: white">
+        <div class="separator" style="width: 100%; height: 28px; background-color: #afafb0;; margin: 12px 0"></div>
+      </span>
 
       <v-col cols="12" md="3">
         <v-menu
@@ -36,15 +39,12 @@
               v-model="dateFromFormatted"
               label="Дата заезда"
               :prepend-icon="short ? '' : 'mdi-calendar'"
-              v-bind="attrs"
               filled
-              flat
               solo
+              v-bind="attrs"
+              flat
               hide-details
-              max-height="100%"
-              :dense="short"
               class="rounded-0"
-              style="border-left: 1px solid #AFAFB0; border-right: 1px solid #AFAFB0;"
               @blur="dateFrom = parseDate(dateFromFormatted)"
               v-on="on"
             ></v-text-field>
@@ -59,6 +59,11 @@
           ></v-date-picker>
         </v-menu>
       </v-col>
+
+      <span class="separator__wrapper" style="width: 1px; height: 52px; background-color: white">
+        <div class="separator" style="width: 100%; height: 28px; background-color: #afafb0;; margin: 12px 0"></div>
+      </span>
+
       <v-col cols="12" md="3" class="mr-auto">
         <v-menu
           ref="menuDateTo"
@@ -79,7 +84,6 @@
               flat
               solo
               hide-details
-              :dense="short"
               class="rounded-r-lg rounded-l-0"
               @blur="dateTo = parseDate(dateToFormatted)"
               v-on="on"

@@ -3,6 +3,7 @@
     light
     app
     elevation="0"
+    height="90px"
   >
     <v-btn icon color="red" class="ml-5">
       <v-icon x-large>{{ logo }}</v-icon>
@@ -19,7 +20,7 @@
       outlined
       width="138px"
       color="#00ACA2"
-      class="mr-md-2 text-capitalize font-weight-regular py-5 px-8 rounded-lg bg-white"
+      class="mr-md-2 text-capitalize font-weight-regular py-6 px-8 rounded-lg bg-white body-1"
       >Вход</v-btn
     >
     <v-btn
@@ -28,7 +29,7 @@
       raised
       width="138px"
       color="#00ACA2"
-      class="text-capitalize font-weight-regular py-5 px-8 rounded-lg bg-white"
+      class="text-capitalize font-weight-regular py-6 px-8 rounded-lg bg-white body-1"
       >Регистрация</v-btn
     >
   </v-app-bar>
