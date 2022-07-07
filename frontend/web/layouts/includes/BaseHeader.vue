@@ -1,8 +1,8 @@
 <template>
   <v-app-bar
-    dark
+    light
     app
-    class="align-baseline justify-sm-center align-content-center"
+    elevation="0"
   >
     <v-btn icon color="red" class="ml-5">
       <v-icon x-large>{{ logo }}</v-icon>
@@ -11,29 +11,40 @@
     <v-spacer />
     <small-search-form
       v-if="search"
-      class="align-content-center mt-6"
+      class="align-content-center"
       short
     ></small-search-form>
     <v-spacer />
-    <v-btn filled rounded solo outlined plain raised text class="mr-md-2"
-      >Войти</v-btn
+    <v-btn
+      outlined
+      width="138px"
+      color="#00ACA2"
+      class="mr-md-2 text-capitalize font-weight-regular py-5 px-8 rounded-lg bg-white"
+      >Вход</v-btn
     >
-    <v-btn color="accent" outlined plain raised rounded text>Регистрация</v-btn>
+    <v-btn
+      rounded
+      outlined
+      raised
+      width="138px"
+      color="#00ACA2"
+      class="text-capitalize font-weight-regular py-5 px-8 rounded-lg bg-white"
+      >Регистрация</v-btn
+    >
   </v-app-bar>
 </template>
 
 <script>
 import { mdiBiohazard } from '@mdi/js'
-import {mapGetters} from "vuex";
+import { mapGetters } from 'vuex'
 import SmallSearchForm from '../../components/forms/search/SmallSearchForm'
-import Registration from "../../components/cabinet/Registration";
-import SmsConfirm from "../../components/cabinet/SmsConfirm";
-import Login from "../../components/cabinet/Login";
-
+// import Registration from '../../components/cabinet/Registration'
+// import SmsConfirm from '../../components/cabinet/SmsConfirm'
+// import Login from '../../components/cabinet/Login'
 
 export default {
   name: 'BaseHeader',
-  components: { SmallSearchForm},
+  components: { SmallSearchForm },
   props: {
     search: {
       type: Boolean,
@@ -45,15 +56,11 @@ export default {
     title: 'Понаехали!',
   }),
   computed: {
-    ...mapGetters({
-
-    }),
+    ...mapGetters({}),
   },
   methods: {
-    toggleVisible(type, value) {
-
-    }
-  }
+    toggleVisible(type, value) {},
+  },
 }
 </script>
 

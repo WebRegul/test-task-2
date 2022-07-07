@@ -2,7 +2,7 @@
   <v-app-bar
     fixed
     app
-    elevation="1"
+    elevation="0"
     class="mt-16 pt-4 align-center align-baseline d-flex align-content-center"
   >
     <v-select
