@@ -56,7 +56,7 @@ export default {
 
 <style scoped>
 .search__container {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 90px);
 }
 .search__container__row {
   height: 100%;

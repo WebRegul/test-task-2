@@ -1,7 +1,16 @@
 <template>
-  <v-form ref="search" v-model="valid" lazy-validation @submit.prevent="submit">
-    <v-row no-gutters>
-      <v-col cols="12" md="3" class="ml-auto">
+  <v-form
+    ref="search"
+    v-model="valid"
+    height="52px"
+    lazy-validation
+    style="max-width: 612px"
+    class="ml-5"
+    @submit.prevent="submit"
+  >
+    <v-row no-gutters class="smallSearchForm bg-white rounded-lg">
+      
+      <v-col>
         <v-tooltip
           slot="append"
           v-model="showCityHint"
@@ -20,11 +29,10 @@
         </v-tooltip>
       </v-col>
 
-      <span class="separator__wrapper" style="width: 1px; height: 52px; background-color: white">
-        <div class="separator" style="width: 100%; height: 28px; background-color: #afafb0;; margin: 12px 0"></div>
-      </span>
 
-      <v-col cols="12" md="3">
+      <VerticalSeparator />
+
+      <v-col>
         <v-menu
           ref="menuDateFrom"
           v-model="menuDateFrom"
@@ -39,12 +47,12 @@
               v-model="dateFromFormatted"
               label="Дата заезда"
               :prepend-icon="short ? '' : 'mdi-calendar'"
+              v-bind="attrs"
               filled
               solo
-              v-bind="attrs"
               flat
               hide-details
-              class="rounded-0"
+              class="rounded-0 h-inherit"
               @blur="dateFrom = parseDate(dateFromFormatted)"
               v-on="on"
             ></v-text-field>
@@ -52,6 +60,7 @@
           <v-date-picker
             v-model="dateFrom"
             solo
+            z
             filled
             rounded
             no-title
@@ -60,11 +69,9 @@
         </v-menu>
       </v-col>
 
-      <span class="separator__wrapper" style="width: 1px; height: 52px; background-color: white">
-        <div class="separator" style="width: 100%; height: 28px; background-color: #afafb0;; margin: 12px 0"></div>
-      </span>
+      <VerticalSeparator />
 
-      <v-col cols="12" md="3" class="mr-auto">
+      <v-col>
         <v-menu
           ref="menuDateTo"
           v-model="menuDateTo"
@@ -108,11 +115,12 @@
 <script>
 import { mapMutations } from 'vuex'
 import CitySelect from '../../controls/selects/CitySelect'
+import VerticalSeparator from '../../base/VerticalSeparator.vue'
 const DATE_FORMAT = 'D.MM.YYYY'
 
 export default {
   name: 'SmallSearchForm',
-  components: { CitySelect },
+  components: { CitySelect, VerticalSeparator },
 
   props: {
     short: {
@@ -182,4 +190,27 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.smallSearchForm {
+  margin: auto 0;
+  flex-direction: row;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 315px;
+
+  & > * {
+    width: 100%;
+    min-width: 104px;
+    max-width: 171px;
+  }
+
+  @media(max-width: 794px) {
+    &, & * {
+      height: 32px;
+      // min-height: 32px !important;
+      // max-height: 32px !important;
+    }
+  }
+}
+</style>

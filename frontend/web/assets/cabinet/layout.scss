@@ -68,7 +68,7 @@
     border: 1px solid #ccc;
     margin-bottom: 40px;
 
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       flex-direction: column;
     }
   }
@@ -77,7 +77,7 @@
     min-height: 200px;
     margin-right: 10px;
 
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       width: 100%;
     }
 
@@ -90,7 +90,7 @@
     padding: 8px;
     position: relative;
 
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       position: static;
     }
   }
@@ -105,7 +105,7 @@
     background-color: cornflowerblue;
     border-radius: 15px;
 
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       position: absolute;
       top: 0;
     }
@@ -113,7 +113,7 @@
   &__info {
     max-width: 40%;
     margin-top: 10px;
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       margin-top: 0;
       max-width: 100%;
     }
@@ -123,8 +123,8 @@
   }
   &__estimate {
     margin-top: 10px;
-    font-size: .8rem;
-    @media( max-width: $bp-md ) {
+    font-size: 0.8rem;
+    @media (max-width: $bp-md) {
       display: flex;
       justify-content: space-between;
     }
@@ -137,33 +137,32 @@
     display: flex;
     justify-content: space-between;
 
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       position: static;
     }
   }
   &__data {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
   &__price {
-    @media( max-width: $bp-md ) {
+    @media (max-width: $bp-md) {
       display: none;
     }
     &--md {
       display: none;
       margin-left: 20px;
-      @media( max-width: $bp-md ) {
+      @media (max-width: $bp-md) {
         font-size: 1rem;
         display: inline-block;
       }
     }
-
   }
   &__actions {
     position: absolute;
     right: 15px;
     top: 25px;
 
-    @media( max-width: $bp-lg ) {
+    @media (max-width: $bp-lg) {
       background: white;
 
       .btn {
@@ -174,5 +173,18 @@
 }
 
 .bg-white {
-  background-color: #fff;
+  &,
+  &::before,
+  &::after {
+    background-color: #fff !important;
+  }
+}
+
+.filter-selected {
+  &,
+  &::before,
+  &::after {
+    background-color: #e6f7f6 !important;
+    border: 1px solid #33bdb5 !important;
+  }
 }
