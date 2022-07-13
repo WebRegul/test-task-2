@@ -2,7 +2,7 @@
   <v-app light>
     <base-header search />
     <full-search-form></full-search-form>
-    <v-main app class="pa0">
+    <v-main app class="search-page__main pa0">
       <Nuxt />
     </v-main>
   </v-app>
@@ -44,4 +44,12 @@ export default {
   },
 }
 </script>
-<style></style>
+<style lang="scss" scoped>
+.search-page__main {
+  padding-top: 180px !important;
+
+  @media (max-width: 798px) {
+    padding-top:  120px !important;
+  }
+}
+</style>

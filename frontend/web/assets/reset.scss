@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+html, body {
+  min-width: 418px;
+}
+
+#app {
+  background-color: $bg-color;
+}
+
 a {
   text-decoration: none;
 }

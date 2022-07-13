@@ -208,8 +208,7 @@ export default {
   @media(max-width: 794px) {
     &, & * {
       height: 32px;
-      // min-height: 32px !important;
-      // max-height: 32px !important;
+      min-height: 32px !important;
     }
   }
 }
