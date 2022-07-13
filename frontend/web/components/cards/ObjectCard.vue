@@ -1,7 +1,7 @@
 <template>
   <v-card
     v-if="orientation == 'horizontal'"
-    class="object__card--horizontal rounded-lg elevation-1"
+    class="object__card--horizontal rounded-lg"
     style="overflow: hidden"
   >
     <v-container>

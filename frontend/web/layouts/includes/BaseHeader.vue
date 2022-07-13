@@ -1,6 +1,6 @@
 <template>
   <v-app-bar light app align-start elevation="0" class="app-bar pt-4">
-    <v-icon icon color="red" x-large>{{ logo }}</v-icon>
+    <v-icon icon color="#00ACA2" x-large>{{ logo }}</v-icon>
     <v-toolbar-title class="logo__title" v-text="title" />
     <v-spacer />
     <small-search-form v-if="search" short></small-search-form>

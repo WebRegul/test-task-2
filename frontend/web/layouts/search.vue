@@ -49,6 +49,7 @@ export default {
 <style lang="scss" scoped>
 .search-page__main {
   padding-top: 180px !important;
+  padding-bottom: 133px !important;
 
   @media (max-width: 798px) {
     padding-top:  120px !important;

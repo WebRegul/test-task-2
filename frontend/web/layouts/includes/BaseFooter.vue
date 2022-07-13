@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="footer" padless light>
+  <v-footer class="footer" padless fixed light>
     <v-row justify="center" no-gutters>
       <v-col class="pt-5 text-center" cols="12">
         <v-btn v-for="link in links" :key="link" text rounded>
@@ -7,7 +7,7 @@
         </v-btn>
       </v-col>
 
-      <v-col class="pt-5 text-center" cols="12">
+      <v-col class="pt-3 text-center" cols="12">
         <div class="hor-line"></div>
       </v-col>
 
@@ -18,7 +18,7 @@
       </v-col>
 
       <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — <strong class="text-subtitle-1">ООО "Рога и Копыта"</strong>
+        {{ new Date().getFullYear() }} — <strong class="text-subtitle-1">ООО "Понаехали"</strong>
       </v-col>
     </v-row>
   </v-footer>
@@ -30,12 +30,16 @@ export default {
   data: () => ({
     icons: ['mdi-facebook', 'mdi-twitter', 'mdi-linkedin', 'mdi-instagram'],
     links: [
-      'Главная',
-      'Поиск',
-      'Войти',
-      'Куда-то пойти',
-      'Регистрация',
-      'Контакты',
+      // 'Главная',
+      // 'Поиск',
+      // 'Войти',
+      // 'Куда-то пойти',
+      // 'Регистрация',
+      // 'Контакты',
+      'О проекте',
+      'Руководство',
+      'Правила',
+      'Помощь',
     ],
   }),
 }
