@@ -1,46 +1,39 @@
 <template>
   <v-card
     v-if="orientation == 'horizontal'"
-    class="object__card--horizontal rounded-lg elevation-1"
+    class="object__card--horizontal rounded-lg"
+    style="overflow: hidden"
   >
     <v-container>
       <v-row>
-        <v-col class="pb-0" style="max-width: 270px">
-          <v-img
-            min-width="224px"
-            max-width="260px"
-            lazy-src="/1.jpg"
-            src="/1.jpg"
-            class="rounded-lg"
-          ></v-img>
+        <v-col cols="5" max-width="42%" class="pa-0">
+          <v-img height="100%" lazy-src="/1.jpg" src="/1.jpg"></v-img>
         </v-col>
-        <v-col class="pb-0 d-flex align-end flex-column">
+
+        <v-col class="d-flex align-end flex-column">
           <v-card-subtitle
             class="align-self-start text--secondary text-caption text-uppercase pa-0"
+            style="line-height: 2rem"
             >{{ value.type.title }}</v-card-subtitle
           >
           <v-card-title
-            class="align-self-start text-h6 pt-0 pb-5 pl-0 text-break"
-            style="line-height: 1.3rem"
+            class="align-self-start pa-0 text-break"
+            style="font-size: 1rem !important; line-height: 1.3rem"
           >
             {{ value.title }}
           </v-card-title>
-          <v-card-text class="mt-1 grow">
-            <v-row>
-              <span class="mr-4">
-                <v-icon color="primary">mdi-account-supervisor-outline</v-icon>
-                До {{ maxGuests | word_case(['гостя', 'гостей', 'гостей']) }}
+
+          <v-card-subtitle class="mt-1 pa-0 grow text--secondary">
+            <v-row class="ma-0">
+              <span class="mr-4">До {{ maxGuests | word_case(['гостя', 'гостей', 'гостей']) }}
               </span>
               <span class="mr-4">
-                <v-icon color="accent">mdi-door-open</v-icon>
                 {{ rooms | word_case(['комната', 'комнаты', 'комнат']) }}
               </span>
-              <span class="mr-4">
-                <v-icon>mdi-hammer-sickle</v-icon>
-                {{ square }} м<sup>2</sup>
-              </span>
+              <span class="mr-4"> {{ square }} м<sup>2</sup> </span>
             </v-row>
-            <v-row class="mt-5">
+
+            <v-row class="ma-0">
               <v-chip
                 v-for="item in value.options"
                 v-show="item.primary"
@@ -54,26 +47,28 @@
                 {{ item.title }}
               </v-chip>
             </v-row>
-          </v-card-text>
+          </v-card-subtitle>
           <v-spacer></v-spacer>
+
           <v-card-actions
             class="object__card--horizontal__card-actions pb-0 mt-auto d-flex w-100"
           >
             <v-flex class="d-inline-flex align-center">
               <v-rating
                 :value="value.rating.value"
-                color="amber"
+                length="1"
+                color="#FB8C00"
                 dense
                 half-increments
                 readonly
-                size="14"
+                size="23"
               ></v-rating>
               <div class="grey--text text-caption">
                 {{ value.rating.value }} ({{ value.reviews.count }})
               </div>
             </v-flex>
             <v-flex class="text--darken-2 text--secondary text-h6 text-right">
-              <span>{{ value.price | currency }}</span>
+              <span style="font-size: 1rem">От {{ value.price | currency }} / ночь</span>
             </v-flex>
           </v-card-actions>
         </v-col>

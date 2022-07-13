@@ -1,44 +1,62 @@
 <template>
-  <v-app-bar
-    fixed
-    app
-    elevation="1"
-    class="mt-16 pt-4 align-center align-baseline d-flex align-content-center"
-  >
+  <v-app-bar fixed app elevation="0" class="app-bar d-flex pt-2">
     <v-select
       v-model="filters.houseType"
-      :items="houseTypes"
-      multiple
-      chips
-      deletable-chips
       label="Тип жилья"
+      :items="houseTypes"
       item-text="title"
       item-value="id"
-      class="full_search__panel__select--house-types"
+      multiple
+      filled
+      solo
+      flat
+      chips
+      deletable-chips
+      hide-details
+      class="full_search__panel__select--house-types font-weight-regular rounded-lg bg-white mr-4"
     >
-      <!--      <template v-slot:selection="{ item, index }">-->
-      <!--        <v-chip v-if="index < 2">-->
-      <!--          <span>{{ item.title }}</span>-->
-      <!--        </v-chip>-->
-      <!--        <span-->
-      <!--          v-if="index >= 2"-->
-      <!--          class="grey&#45;&#45;text text-caption"-->
-      <!--        >-->
-      <!--          (и еще {{ filters.houseType.length - 2 }})-->
-      <!--        </span>-->
-      <!--      </template>-->
+      <!-- <template v-for="item in houseTypes">
+        <option :key="item.id" value="item.id">
+          {{item.title}}
+        </option>
+      </template> -->
+      <!-- <template v-slot:selection="{ item, index }">
+        <v-chip v-if="index < 2">
+          <span>{{ item.title }}</span>
+        </v-chip>
+        <span v-if="index >= 2" class="grey&#45;&#45;text text-caption">
+          (и еще {{ filters.houseType.length - 2 }})
+        </span>
+      </template> -->
     </v-select>
-    <v-chip-group v-model="filters.options" multiple class="ml-2 mb-4">
+
+    <span class="vertical-separator">
+      <VerticalSeparator />
+    </span>
+
+    <v-chip-group
+      v-model="filters.options"
+      multiple
+      class="filter-group py-0 ml-4 mr-2"
+    >
       <v-chip
         v-for="item in optionsList"
         v-show="item.primary"
         :key="item.id"
-        filter
-        outlined
         :value="item.id"
+        style="border: 1px solid #d7d7d8; height: 58px"
+        class="filter-group__element py-0 my-0 text-capitalize font-weight-regular py-6 px-8 rounded-lg body-1"
+        :class="{
+          'bg-white': !filters.options.includes(item.id),
+          'filter-selected': filters.options.includes(item.id),
+        }"
         >{{ item.title }}</v-chip
       >
     </v-chip-group>
+
+    <span class="vertical-separator">
+      <VerticalSeparator />
+    </span>
 
     <v-dialog
       v-model="advancedFiltersShow"
@@ -47,26 +65,40 @@
       max-width="700px"
     >
       <template #activator="{ on, attrs }">
-        <v-btn
-          class="ma-2 mb-6"
-          small
-          outlined
-          rounded
-          color="secondary"
-          v-bind="attrs"
-          v-on="on"
+        <v-badge
+          :content="filterCount"
+          :value="filterCount"
+          color="#33BDB5"
+          overlap
         >
-          <v-badge
-            :content="filterCount"
-            :value="filterCount"
-            color="primary"
-            overlap
-            offset-x="8"
-            offset-y="5"
+          <v-btn
+            filled
+            solo
+            text
+            elevation="0"
+            chips
+            deletable-chips
+            hide-details
+            style="
+              border: 1px solid #d7d7d8;
+              height: 58px;
+              text-transform: none;
+              font-size: 16px;
+              border-radius: 12px;
+            "
+            class="full_search__panel__select--house-types all-filters__btn font-weight-regular rounded-lg bg-white ml-4"
+            :class="{
+              'bg-white': !filters.options.length,
+              'filter-selected': filters.options.length,
+            }"
+            v-bind="attrs"
+            v-on="on"
           >
-            <v-icon>mdi-format-list-bulleted-square</v-icon>
-          </v-badge>
-        </v-btn>
+            Все фильтры
+            <v-icon color="#37373A">mdi-dots-vertical</v-icon>
+            <!-- <v-icon>mdi-format-list-bulleted-square</v-icon> -->
+          </v-btn>
+        </v-badge>
       </template>
       <v-card>
         <v-toolbar dark color="secondary">
@@ -175,8 +207,13 @@
 </template>
 
 <script>
+import VerticalSeparator from '../../base/VerticalSeparator.vue'
+
 export default {
   name: 'FullSearchForm',
+  components: {
+    VerticalSeparator,
+  },
   data() {
     return {
       houseTypes: [
@@ -265,7 +302,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.app-bar {
+  height: 90px !important;
+  margin-top: 90px !important;
+  padding: 17px 0 !important;
+  color: #37373a !important;
+}
+
 .full_search__panel__select--house-types {
   max-width: 450px;
   /*width: 25%;*/
@@ -274,5 +318,51 @@ export default {
   width: 150px;
   text-align: center;
   justify-content: center;
+}
+
+.vertical-separator {
+  width: 2px !important;
+}
+
+@media (max-width: 1143px) {
+  .filter-group {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 794px) {
+  .app-bar {
+    flex-direction: row;
+    justify-content: center;
+    height: 60px !important;
+    margin-top: 60px !important;
+    padding: 0 12px 16px !important;
+
+    &,
+    & > * {
+      width: 100vw !important;
+      min-width: 100vw !important;
+      max-width: 100vw !important;
+    }
+  }
+
+  .filter-group,
+  .full_search__panel__select--house-types,
+  .vertical-separator {
+    display: none;
+  }
+
+  .all-filters__btn {
+    display: inline-flex;
+    width: 91.6vw !important;
+    max-width: 91.6vw !important;
+    height: 32px !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+
+    & * {
+      font-size: 18px;
+    }
+  }
 }
 </style>

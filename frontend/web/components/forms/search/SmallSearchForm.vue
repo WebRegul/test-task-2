@@ -1,18 +1,38 @@
 <template>
-  <v-form ref="search" v-model="valid" lazy-validation @submit.prevent="submit">
-    <v-row>
-      <v-col cols="12" md="1"></v-col>
-      <v-col cols="12" md="3">
-        <v-tooltip slot="append" v-model="showCityHint" :top="!short" :bottom="short">
+  <v-form
+    ref="search"
+    v-model="valid"
+    height="52px"
+    lazy-validation
+    style="max-width: 612px"
+    class="ml-5"
+    @submit.prevent="submit"
+  >
+    <v-row no-gutters class="smallSearchForm bg-white rounded-lg">
+      
+      <v-col>
+        <v-tooltip
+          slot="append"
+          v-model="showCityHint"
+          :top="!short"
+          :bottom="short"
+        >
           <template #activator="{}">
-            <city-select ref="citySelect" v-model="city" :dense="short" @input="onCityChange"></city-select>
+            <city-select
+              ref="citySelect"
+              v-model="city"
+              @input="onCityChange"
+            ></city-select>
           </template>
           <v-icon dense color="accent">mdi-home-search</v-icon>
           <span> Выберите пункт назначения </span>
         </v-tooltip>
-
       </v-col>
-      <v-col cols="12" md="3">
+
+
+      <VerticalSeparator />
+
+      <v-col>
         <v-menu
           ref="menuDateFrom"
           v-model="menuDateFrom"
@@ -29,9 +49,10 @@
               :prepend-icon="short ? '' : 'mdi-calendar'"
               v-bind="attrs"
               filled
-              rounded
               solo
-              :dense="short"
+              flat
+              hide-details
+              class="rounded-0 h-inherit"
               @blur="dateFrom = parseDate(dateFromFormatted)"
               v-on="on"
             ></v-text-field>
@@ -39,6 +60,7 @@
           <v-date-picker
             v-model="dateFrom"
             solo
+            z
             filled
             rounded
             no-title
@@ -46,7 +68,10 @@
           ></v-date-picker>
         </v-menu>
       </v-col>
-      <v-col cols="12" md="3">
+
+      <VerticalSeparator />
+
+      <v-col>
         <v-menu
           ref="menuDateTo"
           v-model="menuDateTo"
@@ -63,9 +88,10 @@
               :prepend-icon="short ? '' : 'mdi-calendar'"
               v-bind="attrs"
               filled
-              rounded
+              flat
               solo
-              :dense="short"
+              hide-details
+              class="rounded-r-lg rounded-l-0"
               @blur="dateTo = parseDate(dateToFormatted)"
               v-on="on"
             ></v-text-field>
@@ -77,25 +103,24 @@
           ></v-date-picker>
         </v-menu>
       </v-col>
-      <v-col v-if="!short" cols="12" md="1">
+      <v-col v-if="!short" cols="12" md="1" class="mr-auto">
         <v-btn color="accent" type="submit" dark fab>
           <v-icon>mdi-magnify</v-icon>
         </v-btn>
       </v-col>
-      <v-col cols="12" md="1"></v-col>
     </v-row>
   </v-form>
 </template>
 
 <script>
-
-import { mapMutations } from "vuex";
-import CitySelect from "../../controls/selects/CitySelect";
+import { mapMutations } from 'vuex'
+import CitySelect from '../../controls/selects/CitySelect'
+import VerticalSeparator from '../../base/VerticalSeparator.vue'
 const DATE_FORMAT = 'D.MM.YYYY'
 
 export default {
   name: 'SmallSearchForm',
-  components: {CitySelect},
+  components: { CitySelect, VerticalSeparator },
 
   props: {
     short: {
@@ -134,20 +159,20 @@ export default {
 
   methods: {
     ...mapMutations({
-      'setCurrentCity' : 'web/geo/setCity'
+      setCurrentCity: 'web/geo/setCity',
     }),
-    onCityChange(value){
-      this.showCityHint = false;
-      this.setCurrentCity(value);
-      if(this.short){
-        this.submit();
+    onCityChange(value) {
+      this.showCityHint = false
+      this.setCurrentCity(value)
+      if (this.short) {
+        this.submit()
       }
     },
 
     submit() {
       if (!this.city) {
         this.showCityHint = true
-        this.$refs.citySelect.activateMenu();
+        this.$refs.citySelect.activateMenu()
         return
       }
       const url = `/search/${this.city}/`
@@ -165,4 +190,26 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.smallSearchForm {
+  margin: auto 0;
+  flex-direction: row;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 315px;
+
+  & > * {
+    width: 100%;
+    min-width: 104px;
+    max-width: 171px;
+  }
+
+  @media(max-width: 794px) {
+    &, & * {
+      height: 32px;
+      min-height: 32px !important;
+    }
+  }
+}
+</style>
