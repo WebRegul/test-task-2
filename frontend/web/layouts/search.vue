@@ -5,15 +5,17 @@
     <v-main app class="search-page__main pa0">
       <Nuxt />
     </v-main>
+  <base-footer />
   </v-app>
 </template>
 
 <script>
 import FullSearchForm from '../components/forms/search/FullSearchForm'
+import BaseFooter from './includes/BaseFooter.vue'
 import BaseHeader from './includes/BaseHeader'
 export default {
   name: 'SearchLayout',
-  components: { FullSearchForm, BaseHeader },
+  components: { FullSearchForm, BaseHeader, BaseFooter, },
   data() {
     return {
       clipped: false,

@@ -1,27 +1,24 @@
 <template>
-  <v-footer padless dark>
+  <v-footer class="footer" padless light>
     <v-row justify="center" no-gutters>
-      <v-col class="py-4 text-center white--text" cols="12">
-        <v-btn
-          v-for="link in links"
-          :key="link"
-          color="white"
-          text
-          rounded
-          class="my-2"
-        >
+      <v-col class="pt-5 text-center" cols="12">
+        <v-btn v-for="link in links" :key="link" text rounded>
           {{ link }}
         </v-btn>
       </v-col>
-      <v-btn v-for="icon in icons" :key="icon" class="mx-4 white--text" icon>
-        <v-icon size="24px">{{ icon }}</v-icon>
-      </v-btn>
 
-      <v-col class="accent darken-2 py-4 text-center white--text" cols="12">
-        Выше будут какие-то ссылки
+      <v-col class="pt-5 text-center" cols="12">
+        <div class="hor-line"></div>
       </v-col>
-      <v-col class="py-4 text-center white--text" cols="12">
-        {{ new Date().getFullYear() }} — <strong>ООО "Рога и Копыта"</strong>
+
+      <v-col class="text-center">
+        <v-btn v-for="icon in icons" :key="icon" class="mx-4" icon>
+          <v-icon size="24px">{{ icon }}</v-icon>
+        </v-btn>
+      </v-col>
+
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong class="text-subtitle-1">ООО "Рога и Копыта"</strong>
       </v-col>
     </v-row>
   </v-footer>
@@ -44,4 +41,21 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.footer {
+  background-color: #ebebec;
+
+  &,
+  & * {
+    color: #5f5f61 !important;
+    text-transform: none;
+  }
+
+  .hor-line {
+    width: 62.46vw;
+    height: 1px;
+    background-color: #5F5F61;
+    margin: 0 auto;
+  }
+}
+</style>
